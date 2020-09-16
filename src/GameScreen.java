@@ -1,16 +1,16 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 public class GameScreen extends JFrame {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int width = screenSize.width / 3;
     private int height = screenSize.height / 3;
-    private JRadioButton levelColorSilver = new JRadioButton("Silver");
-    private JRadioButton levelColorGreen = new JRadioButton("Green");
-    private JRadioButton levelColorRed = new JRadioButton("Red");
-    private JButton startButton = new JButton("Start");
+    private final JRadioButton levelColorSilver = new JRadioButton("Silver");
+    private final JRadioButton levelColorGreen = new JRadioButton("Green");
+    private final JRadioButton levelColorRed = new JRadioButton("Red");
+    private final JButton startButton = new JButton("Start");
     public Container startScreen;
 
     public GameScreen() {
@@ -45,42 +45,47 @@ public class GameScreen extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (levelColorSilver.isSelected()) {
-                ChangeLevelOnSilver();
-                CloseButtonsToChagewindow();
+                changeLevelOnSilver();
+                closeButtonsToChangeWindow();
             } else if (levelColorGreen.isSelected()) {
-                ChangeLevelOnGreen();
-                CloseButtonsToChagewindow();
+                changeLevelOnGreen();
+                closeButtonsToChangeWindow();
             } else if (levelColorRed.isSelected()){
-                ChangeLevelOnRed();
-                CloseButtonsToChagewindow();
+                changeLevelOnRed();
+                closeButtonsToChangeWindow();
             } else {
                 String errorRadiobutton = "Choose some variant!";
                 JOptionPane.showMessageDialog(null, errorRadiobutton, "Attention", JOptionPane.PLAIN_MESSAGE);
             }
             String helpText = "Выберите место старта!";
-            JOptionPane.showMessageDialog(null, helpText, "Help", JOptionPane.PLAIN_MESSAGE);
+            //JOptionPane.showMessageDialog(null, helpText, "Help", JOptionPane.PLAIN_MESSAGE);
         }
     }
 
-    public void CloseButtonsToChagewindow() {
+    public void closeButtonsToChangeWindow() {
         levelColorSilver.setVisible(false);
         levelColorGreen.setVisible(false);
         levelColorRed.setVisible(false);
         startButton.setVisible(false);
     }
 
-    public void ChangeLevelOnSilver () {
+    public void changeLevelOnSilver() {
         GameScreen.this.setSize(400, 400);
         startScreen.setBackground(Color.LIGHT_GRAY);
+        startScreen.setVisible(false);
+        add(new Functionality());
     }
 
-    public void ChangeLevelOnGreen () {
+    public void changeLevelOnGreen() {
         GameScreen.this.setSize(400, 400);
         startScreen.setBackground(Color.getHSBColor(0.210f, 0.6f, 1.0f));
+        add(new Functionality());
     }
 
-    public void ChangeLevelOnRed () {
+    public void changeLevelOnRed() {
         GameScreen.this.setSize(400, 400);
         startScreen.setBackground(Color.getHSBColor(0.0f, 0.6f, 1.0f));
+        add(new Functionality());
     }
+
 }
